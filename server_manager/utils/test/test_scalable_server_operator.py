@@ -3,7 +3,7 @@ from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
 from utils import scalable_server_operator
-from utils.runtime_profiles import FEDERATED_TASK_V3
+from utils.runtime_profiles import FEDERATED_TASK_V3, FEDERATED_TASK_V3_ONPREM
 
 
 class CampaignConfig:
@@ -183,73 +183,78 @@ class ScalableServerOperatorTest(unittest.TestCase):
         _get_port,
         _update_virtual_service,
     ):
-        apps_api = Mock()
-        apps_api_factory.return_value = apps_api
-        release = SimpleNamespace(
-            release_id="release-mnist",
-            archive_url="https://example.invalid/release.zip",
-            archive_sha256="a" * 64,
-            model_url="https://example.invalid/model.safetensors",
-            model_sha256="b" * 64,
-            model_format="safetensors",
-            fedops_version=FEDERATED_TASK_V3.fedops_version,
-            source_revision=FEDERATED_TASK_V3.source_revision,
-        )
-        task_data = SimpleNamespace(
-            runtime_contract=FEDERATED_TASK_V3.name,
-            runtime_release=release,
-            campaign_config=CampaignConfig(),
-            data_type="Image",
-            model_type="AI",
-            learning_rate="",
-            num_epochs="",
-            batch_size="",
-            num_rounds="2",
-            client_per_round="1",
-            strategy="FedAvg",
-            strategy_params={},
-            xai_enabled="false",
-            sba_fl_target="",
-            llm_params={},
-            dataset_params={},
-            yaml_config=None,
-        )
-        status = {}
+        for profile in (FEDERATED_TASK_V3, FEDERATED_TASK_V3_ONPREM):
+            with self.subTest(profile=profile.fedops_version):
+                apps_api = Mock()
+                apps_api_factory.return_value = apps_api
+                release = SimpleNamespace(
+                    release_id="release-mnist",
+                    archive_url="https://example.invalid/release.zip",
+                    archive_sha256="a" * 64,
+                    model_url="https://example.invalid/model.safetensors",
+                    model_sha256="b" * 64,
+                    model_format="safetensors",
+                    fedops_version=profile.fedops_version,
+                    source_revision=profile.source_revision,
+                )
+                task_data = SimpleNamespace(
+                    runtime_contract=profile.name,
+                    runtime_release=release,
+                    campaign_config=CampaignConfig(),
+                    data_type="Image",
+                    model_type="AI",
+                    learning_rate="",
+                    num_epochs="",
+                    batch_size="",
+                    num_rounds="2",
+                    client_per_round="1",
+                    strategy="FedAvg",
+                    strategy_params={},
+                    xai_enabled="false",
+                    sba_fl_target="",
+                    llm_params={},
+                    dataset_params={},
+                    yaml_config=None,
+                )
+                status = {}
 
-        deployment_name = scalable_server_operator.create_scalable_fl_server(
-            task_id="mnist",
-            fl_server_status=status,
-            server_repo_addr="",
-            task_data=task_data,
-        )
+                deployment_name = scalable_server_operator.create_scalable_fl_server(
+                    task_id="mnist",
+                    fl_server_status=status,
+                    server_repo_addr="",
+                    task_data=task_data,
+                )
 
-        self.assertEqual(deployment_name, "fl-server-deploy-mnist")
-        deployment = apps_api.create_namespaced_deployment.call_args.args[1]
-        env = {
-            variable.name: variable.value
-            for variable in deployment.spec.template.spec.containers[0].env
-            if variable.value is not None
-        }
-        self.assertEqual(
-            env["FEDOPS_CAMPAIGN_CONFIG"],
-            '{"schemaVersion":1,"rounds":2,"clientsPerRound":1,"strategy":{"name":"FedAvg","parameters":{}}}',
-        )
-        container = deployment.spec.template.spec.containers[0]
-        bootstrap = container.args[0]
-        self.assertIn("uv sync --frozen --link-mode copy", bootstrap)
-        self.assertNotIn("--extra participate", bootstrap)
-        self.assertIn("torch.version.cuda is None", bootstrap)
-        self.assertIn("torchvision.extension._has_ops()", bootstrap)
-        self.assertIn("FedOps 1.3 Runtime Release bootstrap failed", bootstrap)
-        self.assertLess(
-            bootstrap.index("FedOps 1.3 Runtime Release bootstrap failed"),
-            bootstrap.index("Setting up Pytorch (AI) FL code"),
-        )
-        readiness = " ".join(container.readiness_probe._exec.command)
-        self.assertIn("release.identity", readiness)
-        self.assertIn("torch.version.cuda is None", readiness)
-        self.assertIn("torchvision.extension._has_ops()", readiness)
-        self.assertEqual(status["mnist"]["campaign"]["rounds"], 2)
+                self.assertEqual(deployment_name, "fl-server-deploy-mnist")
+                deployment = apps_api.create_namespaced_deployment.call_args.args[1]
+                env = {
+                    variable.name: variable.value
+                    for variable in deployment.spec.template.spec.containers[0].env
+                    if variable.value is not None
+                }
+                self.assertEqual(
+                    env["FEDOPS_CAMPAIGN_CONFIG"],
+                    '{"schemaVersion":1,"rounds":2,"clientsPerRound":1,"strategy":{"name":"FedAvg","parameters":{}}}',
+                )
+                self.assertEqual(env["FEDOPS_PACKAGE_VERSION"], profile.fedops_version)
+                self.assertEqual(env["FEDOPS_SOURCE_REVISION"], profile.source_revision)
+                container = deployment.spec.template.spec.containers[0]
+                bootstrap = container.args[0]
+                self.assertIn("uv sync --frozen --link-mode copy", bootstrap)
+                self.assertNotIn("--extra participate", bootstrap)
+                self.assertIn("torch.version.cuda is None", bootstrap)
+                self.assertIn("torchvision.extension._has_ops()", bootstrap)
+                self.assertIn("FedOps 1.3 Runtime Release bootstrap failed", bootstrap)
+                self.assertLess(
+                    bootstrap.index("FedOps 1.3 Runtime Release bootstrap failed"),
+                    bootstrap.index("Setting up Pytorch (AI) FL code"),
+                )
+                readiness = " ".join(container.readiness_probe._exec.command)
+                self.assertIn("release.identity", readiness)
+                self.assertIn("torch.version.cuda is None", readiness)
+                self.assertIn("torchvision.extension._has_ops()", readiness)
+                self.assertEqual(status["mnist"]["campaign"]["rounds"], 2)
+
 
 
 if __name__ == "__main__":

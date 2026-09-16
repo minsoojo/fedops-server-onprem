@@ -54,11 +54,19 @@ FEDERATED_TASK_V3_EVALUATION = RuntimeProfile(
 )
 
 
+FEDERATED_TASK_V3_ONPREM = RuntimeProfile(
+    name="federated-task-v3",
+    schema_version=3,
+    fedops_version="1.1.30.19+onprem.20260916",
+    source_revision="ff5f44ddea2705c8d901a54a0272f517822da8f4",
+)
+
+
 def resolve_runtime_profile(name: Optional[str], source_revision: Optional[str] = None) -> RuntimeProfile:
     """Resolve only a trusted profile; omitted callers remain legacy-compatible."""
     selected = name or LEGACY_V1.name
     if source_revision:
-        candidates = list(_PROFILES.values()) + [FEDERATED_TASK_V3_EVALUATION]
+        candidates = list(_PROFILES.values()) + [FEDERATED_TASK_V3_EVALUATION, FEDERATED_TASK_V3_ONPREM]
         for profile in candidates:
             if profile.name == selected and profile.source_revision == source_revision:
                 return profile

@@ -3,6 +3,7 @@ import unittest
 from utils.runtime_profiles import (
     FEDERATED_TASK_V3,
     FEDERATED_TASK_V3_EVALUATION,
+    FEDERATED_TASK_V3_ONPREM,
     FEDERATED_TASK_V2,
     LEGACY_V1,
     resolve_runtime_profile,
@@ -30,6 +31,14 @@ class RuntimeProfilesTest(unittest.TestCase):
             FEDERATED_TASK_V3.source_revision,
             "fde3137f6e94bc4558352b109a8c87186d20208c",
         )
+
+    def test_onprem_revision_is_explicit_and_keeps_old_profiles(self):
+        profile = FEDERATED_TASK_V3_ONPREM
+        self.assertEqual(resolve_runtime_profile(profile.name, profile.source_revision), profile)
+        self.assertEqual(profile.fedops_version, "1.1.30.19+onprem.20260916")
+        self.assertEqual(resolve_runtime_profile(profile.name), FEDERATED_TASK_V3)
+        with self.assertRaises(ValueError):
+            resolve_runtime_profile("legacy-v1", profile.source_revision)
 
     def test_arbitrary_version_or_revision_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "Unsupported FedOps Runtime contract"):
