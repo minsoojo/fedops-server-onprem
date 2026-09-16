@@ -1,0 +1,12 @@
+.git
+**/.env*
+**/node_modules
+**/__pycache__
+**/.venv
+**/*.pem
+**/*.key
+**/config.txt
+dist
+build
+Dockerfile
+.dockerignore

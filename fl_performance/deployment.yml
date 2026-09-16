@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fl-perf
+  namespace: fedops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: fl-perf
+  template:
+    metadata:
+      labels:
+        run: fl-perf
+    spec:
+      serviceAccountName: fedops-sa
+      containers:
+        - name: fl-perf
+          image: python:3.9
+          imagePullPolicy: Always
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              apt update &&
+              mkdir -p ~/.ssh &&
+              echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa &&
+              chmod 600 ~/.ssh/id_rsa &&
+              touch ~/.ssh/known_hosts &&
+              ssh-keyscan github.com >> ~/.ssh/known_hosts &&
+              git clone git@github.com:gachon-CCLab/FedOps-Server.git &&
+              cd /FedOps-Server/fl_performance &&
+              pip install -r requirements.txt &&
+              python3 app.py
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 8001 
+          env:
+            - name: SSH_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fedops-server-env-secret
+                  key: SSH_PRIVATE_KEY
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-uri
+                  key: MONGODB_URI
+            - name: MONGODB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-uri
+                  key: MONGODB_DATABASE

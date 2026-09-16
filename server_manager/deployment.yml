@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fl-server-st
+  namespace: fedops
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      run: fl-server-st
+  template:
+    metadata:
+      annotations:
+        fedops.gachon.ac.kr/release: "optional-server-validation-2026-09-08"
+      labels:
+        run: fl-server-st
+    spec:
+      serviceAccountName: fedops-sa
+      containers:
+        - name: server-manager
+          image: python:3.9
+          imagePullPolicy: Always
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              apt update &&
+              mkdir -p ~/.ssh &&
+              echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa &&
+              chmod 600 ~/.ssh/id_rsa &&
+              touch ~/.ssh/known_hosts &&
+              ssh-keyscan github.com >> ~/.ssh/known_hosts &&
+              git clone git@github.com:gachon-CCLab/FedOps-Server.git &&
+              cd /FedOps-Server/server_manager &&
+              pip install -r requirements.txt &&
+              python3 app.py
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 8000
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 5
+            failureThreshold: 120
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 15
+            timeoutSeconds: 2
+            failureThreshold: 3
+          env:
+            - name: FEDOPS_HOSTPATH_STORAGE_NODE
+              value: "ccl-e-server"
+            - name: SSH_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fedops-server-env-secret
+                  key: SSH_PRIVATE_KEY
+          

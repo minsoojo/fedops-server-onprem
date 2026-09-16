@@ -1,0 +1,227 @@
+{
+  "sourceExport": "FedOps-Server",
+  "basis": "Sanitized handoff plus 67-file configuration manifest; new history, not an upstream fork or full export.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sourceSha256": "3cb26ac3a72b2a8bc987ec10709ed570611d4be2be1ab2e80792b470538828d4",
+      "repositorySha256": "7f053d2269c28d9c2edb6563f2f1257dcc26509594695b071993c61058f645ef"
+    },
+    {
+      "path": "API_QUICK_REFERENCE.md",
+      "sourceSha256": "905905ff54e355cfa20b41f0773906a635267b049d9410c8335fe30fc333855c",
+      "repositorySha256": "905905ff54e355cfa20b41f0773906a635267b049d9410c8335fe30fc333855c"
+    },
+    {
+      "path": "API_SPECIFICATION.md",
+      "sourceSha256": "9ea3eea17a4f08eddc95e39ff05ffd71562d9be58373bf67584626d2ddd7d39f",
+      "repositorySha256": "9ea3eea17a4f08eddc95e39ff05ffd71562d9be58373bf67584626d2ddd7d39f"
+    },
+    {
+      "path": "README.md",
+      "sourceSha256": "ba8d6b5d11c856fe129d9205af4b6c3655886b9560b8d747cf0513167f00e85b",
+      "repositorySha256": "ba8d6b5d11c856fe129d9205af4b6c3655886b9560b8d747cf0513167f00e85b"
+    },
+    {
+      "path": "fl_performance/README.md",
+      "sourceSha256": "1d0c98f2e92ffc15e9edf0849fe5e2ab84b53ae4d4cadc1c953bc4643c934047",
+      "repositorySha256": "1d0c98f2e92ffc15e9edf0849fe5e2ab84b53ae4d4cadc1c953bc4643c934047"
+    },
+    {
+      "path": "fl_performance/app.py",
+      "sourceSha256": "e1cf4cadb9677bafe240cd2cc3786bb5fce3c6e00c0aa298cb33585c94a0fca2",
+      "repositorySha256": "e1cf4cadb9677bafe240cd2cc3786bb5fce3c6e00c0aa298cb33585c94a0fca2"
+    },
+    {
+      "path": "fl_performance/deployment.yml",
+      "sourceSha256": "419620b7923e78d3a7cac5a8d9813f79db4f823cc7bcc90c463e52fff181fd88",
+      "repositorySha256": "419620b7923e78d3a7cac5a8d9813f79db4f823cc7bcc90c463e52fff181fd88"
+    },
+    {
+      "path": "fl_performance/requirements.txt",
+      "sourceSha256": "d39b15350bbb205b97eeed403e362b517d43b2b6648565f46df1a61a977e45f8",
+      "repositorySha256": "d39b15350bbb205b97eeed403e362b517d43b2b6648565f46df1a61a977e45f8"
+    },
+    {
+      "path": "fl_performance/service.yml",
+      "sourceSha256": "6c908495d4be150287ea5dce4ac31b406cc47aed588c5a3c34e5b86a12c0b086",
+      "repositorySha256": "6c908495d4be150287ea5dce4ac31b406cc47aed588c5a3c34e5b86a12c0b086"
+    },
+    {
+      "path": "server_manager/README.md",
+      "sourceSha256": "1d0c98f2e92ffc15e9edf0849fe5e2ab84b53ae4d4cadc1c953bc4643c934047",
+      "repositorySha256": "1d0c98f2e92ffc15e9edf0849fe5e2ab84b53ae4d4cadc1c953bc4643c934047"
+    },
+    {
+      "path": "server_manager/SCALABLE_SERVER_INTEGRATION.md",
+      "sourceSha256": "60a6dc4a6ea376081c5291c8ed542dbaa84348e6aa4669f0264ab4d37a49b723",
+      "repositorySha256": "60a6dc4a6ea376081c5291c8ed542dbaa84348e6aa4669f0264ab4d37a49b723"
+    },
+    {
+      "path": "server_manager/app.py",
+      "sourceSha256": "78349ddbce27282c9f52b360a021e35850f884b817365d7a0b24e0e72ee030b1",
+      "repositorySha256": "78349ddbce27282c9f52b360a021e35850f884b817365d7a0b24e0e72ee030b1"
+    },
+    {
+      "path": "server_manager/app_test.py",
+      "sourceSha256": "df5ddabad94233690c1c2b8041497686694dc7cfa699abcf190c7848f21974da",
+      "repositorySha256": "df5ddabad94233690c1c2b8041497686694dc7cfa699abcf190c7848f21974da"
+    },
+    {
+      "path": "server_manager/before_app.py",
+      "sourceSha256": "11270f49ff5ebec143353295b21b02630ef95b81aae7116af8043c792b5f6c2b",
+      "repositorySha256": "11270f49ff5ebec143353295b21b02630ef95b81aae7116af8043c792b5f6c2b"
+    },
+    {
+      "path": "server_manager/deployment.yml",
+      "sourceSha256": "30dcf60f34524300f85178ab09d1324dd17a4ab458473b6593765fd4657dfd93",
+      "repositorySha256": "30dcf60f34524300f85178ab09d1324dd17a4ab458473b6593765fd4657dfd93"
+    },
+    {
+      "path": "server_manager/requirements.txt",
+      "sourceSha256": "7bd31b0470ea15813259db42841d7d271ab044d5078046555d11ef1d61ae472f",
+      "repositorySha256": "7bd31b0470ea15813259db42841d7d271ab044d5078046555d11ef1d61ae472f"
+    },
+    {
+      "path": "server_manager/service.yml",
+      "sourceSha256": "afca31076fde72f3a94b069ebafd868d0eda19af9398c32993f9c7e24a68ec98",
+      "repositorySha256": "afca31076fde72f3a94b069ebafd868d0eda19af9398c32993f9c7e24a68ec98"
+    },
+    {
+      "path": "server_manager/tests/test_runtime_bootstrap.py",
+      "sourceSha256": "45ac0c626b287458a443b5ad0005e28bb0a788a487d9582106e38a2f654d9802",
+      "repositorySha256": "45ac0c626b287458a443b5ad0005e28bb0a788a487d9582106e38a2f654d9802"
+    },
+    {
+      "path": "server_manager/tests/test_runtime_profiles.py",
+      "sourceSha256": "bb0c395737839438fcc6ce0ce727f6282b6c655a16d4282336926d8a09e2359f",
+      "repositorySha256": "bb0c395737839438fcc6ce0ce727f6282b6c655a16d4282336926d8a09e2359f"
+    },
+    {
+      "path": "server_manager/utils/campaign_lifecycle.py",
+      "sourceSha256": "fce33dadfddc0f7ef58d4fce1f8a372f3335a8ff65692c51d8e0e14d0de58cde",
+      "repositorySha256": "fce33dadfddc0f7ef58d4fce1f8a372f3335a8ff65692c51d8e0e14d0de58cde"
+    },
+    {
+      "path": "server_manager/utils/network_config.py",
+      "sourceSha256": "80554c005798862265b1a9093461148accdf4f3fa889d7efbeb684bdfc7d8bec",
+      "repositorySha256": "80554c005798862265b1a9093461148accdf4f3fa889d7efbeb684bdfc7d8bec"
+    },
+    {
+      "path": "server_manager/utils/resource_names.py",
+      "sourceSha256": "8cb50d8539aca5bf49813704a7ffc75864d59029521f04feeaa30bff5be85978",
+      "repositorySha256": "8cb50d8539aca5bf49813704a7ffc75864d59029521f04feeaa30bff5be85978"
+    },
+    {
+      "path": "server_manager/utils/runtime_bootstrap.py",
+      "sourceSha256": "cb2a97457d072d6a632802a77034743850d2969bd702bea7c405ede25b91ef4c",
+      "repositorySha256": "cb2a97457d072d6a632802a77034743850d2969bd702bea7c405ede25b91ef4c"
+    },
+    {
+      "path": "server_manager/utils/runtime_profiles.py",
+      "sourceSha256": "e59998d3e11d6f8faee50481ff4d42a77ef9f8fa1eae2dca838e5cafe348c592",
+      "repositorySha256": "e59998d3e11d6f8faee50481ff4d42a77ef9f8fa1eae2dca838e5cafe348c592"
+    },
+    {
+      "path": "server_manager/utils/runtime_reconciler.py",
+      "sourceSha256": "2e65d28ade6c4959140f8c97138bc395fb27c8b7c34014202c4f207dfe087ae1",
+      "repositorySha256": "2e65d28ade6c4959140f8c97138bc395fb27c8b7c34014202c4f207dfe087ae1"
+    },
+    {
+      "path": "server_manager/utils/scalable_server_operator.py",
+      "sourceSha256": "daa230d85d689dc57f37f9d45ffa3ac8c8210acee6b7f04404414e42f3485102",
+      "repositorySha256": "daa230d85d689dc57f37f9d45ffa3ac8c8210acee6b7f04404414e42f3485102"
+    },
+    {
+      "path": "server_manager/utils/server_operator.py",
+      "sourceSha256": "c031aa92b74cf910fe2052d3f0e388b4752b9f764fc91c33fd98f5a3c129851f",
+      "repositorySha256": "c031aa92b74cf910fe2052d3f0e388b4752b9f764fc91c33fd98f5a3c129851f"
+    },
+    {
+      "path": "server_manager/utils/storage_config.py",
+      "sourceSha256": "f155277f85c694176f792de3e8bf0f7a5eebd026028cea3a0abeb3ef65b346c7",
+      "repositorySha256": "f155277f85c694176f792de3e8bf0f7a5eebd026028cea3a0abeb3ef65b346c7"
+    },
+    {
+      "path": "server_manager/utils/test/server_operator copy.py",
+      "sourceSha256": "7a382ef847813c29d7e0b5cc9e5212c1f27ba883fd76a95decd0d3e9dbcc8a69",
+      "repositorySha256": "7a382ef847813c29d7e0b5cc9e5212c1f27ba883fd76a95decd0d3e9dbcc8a69"
+    },
+    {
+      "path": "server_manager/utils/test/server_operator_test.py",
+      "sourceSha256": "df8ed412f1ab5bdb17a97144faee7d451f16906e04702f62a152ccb7a8aacb8d",
+      "repositorySha256": "df8ed412f1ab5bdb17a97144faee7d451f16906e04702f62a152ccb7a8aacb8d"
+    },
+    {
+      "path": "server_manager/utils/test/test_campaign_lifecycle.py",
+      "sourceSha256": "a4fa41a2a1489268b67d5b9140d914fe0b1f29e3602bb73833c912d338a48d21",
+      "repositorySha256": "a4fa41a2a1489268b67d5b9140d914fe0b1f29e3602bb73833c912d338a48d21"
+    },
+    {
+      "path": "server_manager/utils/test/test_evaluation_contract.py",
+      "sourceSha256": "87e5f7127d72904a2ebfc8926c0d9c36d38bafb98a702b1be6ca184a3f85e527",
+      "repositorySha256": "87e5f7127d72904a2ebfc8926c0d9c36d38bafb98a702b1be6ca184a3f85e527"
+    },
+    {
+      "path": "server_manager/utils/test/test_network_config.py",
+      "sourceSha256": "8c6da542647e1a41ddccd26165fe7db07cd994b402a811f954af04876966e0ec",
+      "repositorySha256": "8c6da542647e1a41ddccd26165fe7db07cd994b402a811f954af04876966e0ec"
+    },
+    {
+      "path": "server_manager/utils/test/test_resource_names.py",
+      "sourceSha256": "9a92b7a0a91855ffac52c21852eeada0825a0a8eb1491d1dfd657ce9b55aaefe",
+      "repositorySha256": "9a92b7a0a91855ffac52c21852eeada0825a0a8eb1491d1dfd657ce9b55aaefe"
+    },
+    {
+      "path": "server_manager/utils/test/test_runtime_reconciler.py",
+      "sourceSha256": "a75e04e16aeb59fd5b985e0cd5647759704010a90a70e45352af1b1af66515ff",
+      "repositorySha256": "a75e04e16aeb59fd5b985e0cd5647759704010a90a70e45352af1b1af66515ff"
+    },
+    {
+      "path": "server_manager/utils/test/test_scalable_server_operator.py",
+      "sourceSha256": "5a997335750dbc74182843b0f86db9020ebb8e67c58ee7749e205f7f808382be",
+      "repositorySha256": "5a997335750dbc74182843b0f86db9020ebb8e67c58ee7749e205f7f808382be"
+    },
+    {
+      "path": "server_manager/utils/test/test_validation_store.py",
+      "sourceSha256": "3948e222db7b688dc02dec43d0a0e98900d06db9f5f4770ee6ab1a0a4576fb2f",
+      "repositorySha256": "3948e222db7b688dc02dec43d0a0e98900d06db9f5f4770ee6ab1a0a4576fb2f"
+    },
+    {
+      "path": "server_manager/utils/validation_store.py",
+      "sourceSha256": "e5a63550a8022980af910cebbb843d8067fe2282d36387ab55c6ec030e2eba25",
+      "repositorySha256": "e5a63550a8022980af910cebbb843d8067fe2282d36387ab55c6ec030e2eba25"
+    },
+    {
+      "path": "server_manager/utils/validation_transfer.py",
+      "sourceSha256": "ebbef14306559887fb4e6e08b314590f71a6e3a51bad2c6e3433bee9447dbdaf",
+      "repositorySha256": "ebbef14306559887fb4e6e08b314590f71a6e3a51bad2c6e3433bee9447dbdaf"
+    },
+    {
+      "path": "server_manager/utils/volume_manager.py",
+      "sourceSha256": "271640f4d8460dff04cb958f3080f73d6f036161b883483c76b39e6284516464",
+      "repositorySha256": "271640f4d8460dff04cb958f3080f73d6f036161b883483c76b39e6284516464"
+    },
+    {
+      "path": "fl_performance/.env.example",
+      "sourceSha256": "e1c44cb8a6421db3de4d86bd2a57f4b95bd71d1790c684abda4ab47ab837ada5",
+      "repositorySha256": "e1c44cb8a6421db3de4d86bd2a57f4b95bd71d1790c684abda4ab47ab837ada5"
+    },
+    {
+      "path": "server_manager/.env.example",
+      "sourceSha256": "2b7a39d134114891a1d3a3eb55742a98e28ef756487dfb5effb4bf68f3095691",
+      "repositorySha256": "2b7a39d134114891a1d3a3eb55742a98e28ef756487dfb5effb4bf68f3095691"
+    },
+    {
+      "path": "server_manager/utils/deployment_config.py",
+      "sourceSha256": "fe1a9884e894c0dd33b1d13b33b7c585b09ed0cad8ca32954862492fa3801969",
+      "repositorySha256": "fe1a9884e894c0dd33b1d13b33b7c585b09ed0cad8ca32954862492fa3801969"
+    },
+    {
+      "path": "server_manager/utils/test/test_deployment_config.py",
+      "sourceSha256": "30f7c987ebedf3865a3a57cacca3a6b081cc9de9045a37ec5c63568974601b44",
+      "repositorySha256": "30f7c987ebedf3865a3a57cacca3a6b081cc9de9045a37ec5c63568974601b44"
+    }
+  ],
+  "omitted": []
+}
